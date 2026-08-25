@@ -1,5 +1,7 @@
 const body=document.body;body.classList.add('loading');
-window.addEventListener('load',()=>{setTimeout(()=>{document.querySelector('.loader').classList.add('done');body.classList.remove('loading');body.classList.add('ready')},450)});
+const resetInitialScroll=()=>{if(!location.hash)scrollTo(0,0)};
+addEventListener('pageshow',resetInitialScroll);
+window.addEventListener('load',()=>{setTimeout(()=>{document.querySelector('.loader').classList.add('done');body.classList.remove('loading');body.classList.add('ready');requestAnimationFrame(resetInitialScroll)},450)});
 const header=document.querySelector('.site-header');
 addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
 const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#global-nav');
