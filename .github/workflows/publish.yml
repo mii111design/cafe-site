@@ -1,8 +1,10 @@
-name: HEARTH サイトを更新
+ame: HEARTH サイトを更新
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '3-58/5 * * * *'
 permissions:
   contents: read
 concurrency:
@@ -37,4 +39,6 @@ jobs:
       - name: 公開する
         id: deployment
         uses: actions/deploy-pages@v4
+
+
 
