@@ -1,4 +1,4 @@
-ame: HEARTH サイトを更新
+name: HEARTH サイトを更新
 on:
   push:
     branches: [main]
