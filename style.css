@@ -475,3 +475,68 @@ img{max-width:100%;vertical-align:middle}
  .cms-news-item time{grid-column:1/-1}
  .cms-news-item summary>span:first-of-type{font-size:14px}
 }
+
+/* Mobile navigation: viewport-sized panel, including on scrolled headers. */
+@media (max-width:900px) {
+  .site-header,
+  .site-header.scrolled {
+    /* A backdrop filter makes fixed descendants relative to the header. */
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+  body.nav-open .site-header {
+    color:var(--ink);
+    background:var(--paper);
+    border-bottom-color:transparent;
+  }
+  .site-header .brand {position:relative;z-index:3}
+  .site-header .menu-toggle {position:relative;z-index:3}
+  .site-header #global-nav {
+    position:fixed;
+    z-index:1;
+    inset:0;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    max-height:none;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    gap:10px;
+    padding:calc(88px + env(safe-area-inset-top,0px)) 24px calc(32px + env(safe-area-inset-bottom,0px));
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease,visibility .25s;
+  }
+  .site-header #global-nav.open {
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
+  }
+  .site-header #global-nav a {
+    flex:0 0 auto;
+    width:min(320px,100%);
+    min-height:48px;
+    margin:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:clamp(20px,5vw,28px);
+  }
+  .site-header #global-nav a:focus-visible,
+  .site-header .menu-toggle:focus-visible {
+    outline:2px solid var(--mid);
+    outline-offset:4px;
+  }
+}
+
